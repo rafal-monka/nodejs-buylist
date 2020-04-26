@@ -11,6 +11,8 @@ var corsOptions = {
   origin: "http://localhost:8084"
 };
 
+console.log("Starting...");
+
 app.use(cors(corsOptions));
 
 const db = require("./app/models");
