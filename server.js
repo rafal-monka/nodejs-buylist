@@ -13,7 +13,7 @@ var corsOptions = {
 
 console.log("Starting...");
 
-app.use(cors(corsOptions));
+app.use(cors()); //corsOptions
 
 const db = require("./app/models");
 db.sequelize.sync( /* { force: true } */ ); //!!! In development, you may need to drop existing tables and re-sync database.
