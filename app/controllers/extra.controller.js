@@ -44,12 +44,9 @@ console.log("updatePrices - listid="+listid);
 };
 
 exports.testJob = async (req, res) => {
-
-console.log(new Date()+"testJob");
-
+console.log(new Date()+"extra.controller.testJob");
     try {
-        await db.sequelize.query("INSERT INTO testjobs (datum) VALUES (NOW())", 
-        );   
+        await db.sequelize.query("INSERT INTO testjobs (datum) VALUES (NOW())");   
         res.status(200).send( {message: "TEST-OK"} ) ; 
 
     } catch (e) {
