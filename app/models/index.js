@@ -28,5 +28,6 @@ db.sequelize = sequelize;
 db.lists = require("./list.model.js")(sequelize, Sequelize);
 db.items = require("./item.model.js")(sequelize, Sequelize);
 db.products = require("./product.model.js")(sequelize, Sequelize);
+db.testjob = require("./testjob.model.js")(sequelize, Sequelize);
 
 module.exports = db;

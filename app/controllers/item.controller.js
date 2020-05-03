@@ -115,7 +115,7 @@ exports.update = (req, res) => {
 
 // Delete a Item with the specified id in the request
 exports.delete = (req, res) => {
-    console.log("delete (Item)/"+req.params.id);
+    //console.log("delete (Item)/"+req.params.id);
     const id = req.params.id;
 
     Item.destroy({
@@ -140,9 +140,9 @@ exports.delete = (req, res) => {
 };
 
 // Delete all Items from the particular List.
-exports.deleteFromParent = (req, res) => {
+exports.deleteAllItemsFromList = (req, res) => {
   Item.destroy({
-    where: {parentid: id},
+    where: {parentid: req.params.parentid},
     truncate: false
   })
     .then(nums => {

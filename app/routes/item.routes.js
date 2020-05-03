@@ -21,6 +21,9 @@ module.exports = app => {
     // Delete an items with id
     router.delete("/:id", items.delete);
   
+    // Delete all items from list
+    router.delete("/all/:parentid", items.deleteAllItemsFromList);
+    
     // delete all items
     //router.delete("/", items.deleteAll);
   

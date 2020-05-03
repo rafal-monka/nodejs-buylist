@@ -3,8 +3,14 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new items
+    // Create buylist items from recipe items
     router.post("/copyrecipe", extra.copyItemsFromRecipeToBuyList);
   
+    // Update recipe items prices from product items
+    router.post("/updateprices", extra.updatePrices);
+
+    //testing Openshift jobs
+    router.get("/job", extra.testJob);
+
     app.use('/api/extra', router);
   };

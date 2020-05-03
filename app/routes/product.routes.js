@@ -9,6 +9,12 @@ module.exports = app => {
     // Retrieve all product items
     router.get("/", products.findAll);
   
+    // Retrieve a single product with id
+    router.get("/:id", products.findOne);
+
+    // Update a product with id
+    router.put("/:id", products.update);
+
     // Retrieve all product items
     router.get("/parent/:parentid", products.findAllNotOnList);
 

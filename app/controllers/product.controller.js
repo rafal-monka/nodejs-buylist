@@ -52,6 +52,47 @@ exports.findAll = (req, res) => {
       });  
 };
 
+// Find a single List with an id
+exports.findOne = (req, res) => {
+console.log(req.params.id);
+    const id = req.params.id;
+
+    Product.findByPk(id)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error retrieving Product with id=" + id
+        });
+      });  
+};
+
+// Update a Product by the id in the request
+exports.update = (req, res) => {
+    const id = req.params.id;
+
+    Product.update(req.body, {
+      where: { id: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Product was updated successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot update Product with id=${id}. Maybe Product was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating LiProductst with id=" + id
+        });
+      });  
+};
+
 // Retrieve all Products from the database BUT NOT on the specified list.
 exports.findAllNotOnList = async (req, res) => {
     // var data = [{id:1, name: "test"}, {id:2, name: "test2"}];

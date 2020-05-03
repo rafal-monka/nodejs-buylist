@@ -1,4 +1,4 @@
-//Buy list
+//list
 module.exports = (sequelize, Sequelize) => {
     const List = sequelize.define("list", {
       name: {
