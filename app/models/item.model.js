@@ -36,7 +36,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(10),
         defaultValue: "ACTIVE",
         allowNull: false
-      }            
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true 
+      } 
     });
   
     return Item;

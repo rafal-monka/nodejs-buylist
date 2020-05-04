@@ -21,6 +21,10 @@ module.exports = (sequelize, Sequelize) => {
       price: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: true
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: true 
       }
     });
   
