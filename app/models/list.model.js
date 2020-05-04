@@ -14,6 +14,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       active: {
         type: Sequelize.BOOLEAN
+      },     
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('NOW()'),
+        allowNull: false 
       },
       updatedAt: {
         type: Sequelize.DATE,

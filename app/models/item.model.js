@@ -36,6 +36,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(10),
         defaultValue: "ACTIVE",
         allowNull: false
+      },     
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('NOW()'),
+        allowNull: false 
       },
       updatedAt: {
         type: Sequelize.DATE,
