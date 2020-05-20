@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
     // } : null;
     var condition = type ? { type: type } : null;
 //console.log("findAll");  
-    List.findAll({ where: condition })
+    List.findAll({ where: condition , order: [['createdAt', 'DESC']]})
       .then(data => {
         res.send(data);
       })
