@@ -24,15 +24,18 @@ exports.updatePrices = async (req, res) => {
     const listid = req.body.listid;
 console.log("updatePrices - listid="+listid);
     try {
-        await db.sequelize.query("UPDATE items i"
-                                  +" SET price = (select price from products p where p.name = i.name and p.category = i.category and p.shop = i.shop),"
-                                      +" updatedAt = NOW() "
-                                 +"WHERE parentid = :listid", 
+        await db.sequelize.query("UPDATE items i "
+                                 +"INNER JOIN products p ON (p.name = i.name and p.category = i.category and p.shop = i.shop)"
+                                  +" SET i.price = p.price, i.value = i.amount * p.price, "
+                                      +" i.updatedAt = NOW() "
+                                + "WHERE i.parentid = :listid",
             { replacements: { listid: listid }  }
         );   
+        
         res.status(200).send( {message: JSON.stringify(req.body)} ) ; 
     } catch (e) {
-        res.send( {message: e.toString()} );
+        console.log(e);
+        res.send( {message: 'ERROR', value: e.toString()} );
     }  
 };
 
