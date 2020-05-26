@@ -36,22 +36,16 @@ exports.create = async (req, res) => {
 
 // Retrieve all List from the database.
 exports.findAll = (req, res) => {
-  //res.send( {"hello":"yes"} );
-  //return;
-
     const type = req.query.type;
-    // var condition = name ? {
-    //   // where: {
-    //     [Op.or]: [
-    //       {name: { [Op.like]: `%${name}%` } }, 
-    //       {description: { [Op.like]: `%${name}%` } },
-    //       {createdAt: { [Op.like]: `%${name}%` } }
-    //     ] 
-    //   // }
-    // } : null;
     var condition = type ? { type: type } : null;
-//console.log("findAll");  
-    List.findAll({ where: condition , order: [['createdAt', 'DESC']]})
+
+    List.findAll({ 
+        where: condition, 
+        order: [
+          ['active', 'DESC'], 
+          ['createdAt', 'DESC']
+        ]
+      })
       .then(data => {
         res.send(data);
       })
@@ -144,6 +138,7 @@ exports.deleteAll = (req, res) => {
           });
         });  
 };
+
 
 // ### Find all active BuyLists
 exports.findAllPublished = (req, res) => {
