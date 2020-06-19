@@ -40,21 +40,25 @@ console.log("updatePrices - listid="+listid);
 };
 
 //Copy active items from one list to another
-exports.copyActiveItemsFromBuyList = async (req, res) => {
-    const sourceid = req.body.sourceid;
-    const destid = req.body.destid;
-console.log("copyActiveItemsFromBuyList - sourceid="+sourceid+", destid="+destid);
+exports.copyItemsBetweenLists = async (req, res) => {
+    const sourceid = req.params.sourceid;
+    const destid = req.params.destid;
+    const status = req.params.status;
+console.log("copyItemsBetweenLists - sourceid="+sourceid+", destid="+destid, ", status="+status);
     let sql = "INSERT INTO items (parentid, name, category, shop, price, unit, amount, value, source, createdAt) "+
               "SELECT :destid, i.name, i.category, i.shop, i.price, i.unit, i.amount, i.price*i.amount, concat(i.source, ':', l.name), NOW() "+
               "  FROM items i INNER JOIN lists l ON (l.id = i.parentid AND l.id=:sourceid) "+
-              " WHERE i.status = 'ACTIVE'";
+              " WHERE i.status = :status";
     try {
         await db.sequelize.query(
             sql, 
-            { replacements: { destid: destid, sourceid: sourceid}  }
+            { replacements: { 
+                destid: destid, sourceid: 
+                sourceid, status: 
+                status.toUpperCase()}  
+            }
         );   
-        res.status(200).send( {message: JSON.stringify(req.body)} ) ; 
-
+        res.status(200).send( {message: JSON.stringify(req.params)} ); 
     } catch (e) {
         res.send( {message: e.toString()} );
     } 

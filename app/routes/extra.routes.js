@@ -7,7 +7,7 @@ module.exports = app => {
     router.post("/copyrecipe", extra.copyItemsFromRecipeToBuyList);
 
     // Copy active items from another list
-    router.post("/copyactiveitems", extra.copyActiveItemsFromBuyList);    
+    router.get("/copyitems/:sourceid/:destid/:status", extra.copyItemsBetweenLists);    
   
     // Update recipe items prices from product items
     router.post("/updateprices", extra.updatePrices);
