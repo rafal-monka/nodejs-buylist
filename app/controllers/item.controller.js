@@ -76,7 +76,7 @@ exports.findItems = async (req, res) => {
   //res.send( {"hello": "yes"} );
 
     try {
-        let items = await db.sequelize.query("SELECT * FROM items WHERE parentid = :parentid ORDER BY status, shop, category, name, source", { 
+        let items = await db.sequelize.query("SELECT * FROM items WHERE parentid = :parentid ORDER BY status, category, shop, name, source", { 
           replacements: { parentid: parentid }, 
           type: db.sequelize.QueryTypes.SELECT
         });   
