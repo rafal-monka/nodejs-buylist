@@ -2,6 +2,7 @@
  * BuyList Node app
  */
 const express = require("express");
+const path = require('path');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 //const schedule = require('node-schedule');
@@ -25,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.json({ message: "Welcome to BuyList application." });
 });
 
@@ -33,6 +34,12 @@ require("./app/routes/list.routes")(app);
 require("./app/routes/item.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/extra.routes")(app);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 //-----------------------
 //TEST job schedule
