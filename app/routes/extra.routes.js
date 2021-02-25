@@ -12,6 +12,9 @@ module.exports = app => {
     // Update recipe items prices from product items
     router.post("/updateprices", extra.updatePrices);
 
+    // Promotions papers
+    router.get("/promotion/:name", extra.getPromotion);
+
     //testing Openshift jobs
     router.get("/job", extra.testJob);
 
