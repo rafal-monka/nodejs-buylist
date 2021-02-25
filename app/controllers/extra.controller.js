@@ -129,6 +129,7 @@ parsePromotion = (item, html) => {
     // console.log('result', result.replace('w gazetkach promocyjnych • Promocja • Cena', ''))
     return {
         product: result.replace(' w gazetkach promocyjnych • Promocja • Cena', ''),
+        url: 'https:'+item.url,
         magazines: magazines
     };
 }
